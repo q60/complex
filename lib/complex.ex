@@ -14,23 +14,23 @@ defmodule Complex do
 
   ## Some examples
 
-  iex> use Complex
-  Complex
+      iex> use Complex
+      Complex
 
-  iex> ~o(1+2i)
-  1.0+2.0i
+      iex> ~o(1+2i)
+      1.0+2.0i
 
-  iex> ~o(1+2i) * ib
-  -2.0+1.0i
+      iex> ~o(1+2i) * ib
+      -2.0+1.0i
 
-  iex> Complex.Trig.sin(~o(-11-2i))
-  3.762158846210887-0.016051388809949604i
+      iex> Complex.Trig.sin(~o(-11-2i))
+      3.762158846210887-0.016051388809949604i
 
-  iex> to_polar(~o(7-9i))
-  {11.40175425099138, -0.9097531579442097}
+      iex> to_polar(~o(7-9i))
+      {11.40175425099138, -0.9097531579442097}
 
-  iex> ~o(1+2i) ** ~o(3+4i)
-  0.129009594074467+0.03392409290517014i
+      iex> ~o(1+2i) ** ~o(3+4i)
+      0.129009594074467+0.03392409290517014i
 
   """
 
@@ -64,14 +64,14 @@ defmodule Complex do
 
   ## Examples
 
-  iex> Complex.parse "1+13i"
-  1.0+13.0i
+      iex> Complex.parse "1+13i"
+      1.0+13.0i
 
-  iex> Complex.parse "2.3-1i"
-  2.3-1.0i
+      iex> Complex.parse "2.3-1i"
+      2.3-1.0i
 
-  iex> Complex.parse "42"
-  :error
+      iex> Complex.parse "42"
+      :error
 
   """
   @spec parse(String.t()) :: complex() | float() | :error
@@ -100,11 +100,11 @@ defmodule Complex do
 
   ## Examples
 
-  iex> ~o(1+4i)
-  1.0+4.0i
+      iex> ~o(1+4i)
+      1.0+4.0i
 
-  iex> ~o(-3.1+5i)
-  -3.1+5.0i
+      iex> ~o(-3.1+5i)
+      -3.1+5.0i
 
   """
   @spec sigil_o(String.t(), list()) :: complex() | float() | :error
