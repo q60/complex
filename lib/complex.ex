@@ -114,6 +114,15 @@ defmodule Complex do
   Imaginary unit.
 
   When no arguments passed, returns imaginary unit; otherwise returns i*b.
+
+  ## Examples
+
+      iex> ib
+      i
+
+      iex> ib(-5)
+      -5i
+
   """
   @spec ib(number()) :: %Complex{im: 1, re: number()}
   def ib(b \\ 1), do: %Complex{re: 0, im: b}
@@ -122,6 +131,15 @@ defmodule Complex do
   Complex conjugate.
 
   Returns the complex conjugate of a complex number.
+
+  ## Examples
+
+      iex> conj(~o(5+7i))
+      5.0-7.0i
+
+      iex> conj(~o(5-7i))
+      5.0+7.0i
+
   """
   @spec conj(complex()) :: complex()
   def conj(z) when is_complex(z) do
@@ -138,6 +156,12 @@ defmodule Complex do
   Polar coordinates.
 
   Returns polar coordinates of a complex number as `{radius, angle}`.
+
+  ## Examples
+
+      iex> to_polar(~o(7-9i))
+      {11.40175425099138, -0.9097531579442097}
+
   """
   @spec to_polar(complex()) :: {float, float}
   def to_polar(z) when is_complex(z) do
