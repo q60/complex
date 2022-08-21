@@ -1,4 +1,10 @@
 defmodule Complex.Trig do
+  @moduledoc """
+  Trigonometry submodule.
+
+  This module is responsible for trigonometric functions. They can be used with both complex and real numbers.
+  """
+
   import Complex
 
   @spec sin(number()) :: float()
