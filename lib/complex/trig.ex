@@ -5,7 +5,7 @@ defmodule Complex.Trig do
   This module is responsible for trigonometric functions. They can be used with both complex and real numbers.
   """
 
-  import Complex
+  import Complex, only: [is_complex: 1, ib: 1, conj: 1]
 
   @spec sin(number()) :: float()
   def sin(x) when is_number(x), do: :math.sin(x)
