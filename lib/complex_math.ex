@@ -1,4 +1,8 @@
 defprotocol ComplexMath do
+  @moduledoc """
+  This protocol is responsible for extending math operators to work with complex numbers.
+  """
+
   def -a
   def a + b
   def a - b

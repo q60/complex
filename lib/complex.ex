@@ -1,4 +1,39 @@
 defmodule Complex do
+  @moduledoc """
+  Elixir library implementing complex numbers and math.
+
+  The library adds new type of `t:complex/0` numbers and basic math operations for them. Complex numbers can also interact with integers and floats. Actually this library expands existing functions, so they can work with complex numbers too. Number operations available:
+
+  * addition
+  * subtraction
+  * multiplication
+  * division
+  * exponentiation
+  * absolute value
+  * trigonometric functions
+
+  ## Some examples
+
+  iex> use Complex
+  Complex
+
+  iex> ~o(1+2i)
+  1.0+2.0i
+
+  iex> ~o(1+2i) * ib
+  -2.0+1.0i
+
+  iex> Complex.Trig.sin(~o(-11-2i))
+  3.762158846210887-0.016051388809949604i
+
+  iex> to_polar(~o(7-9i))
+  {11.40175425099138, -0.9097531579442097}
+
+  iex> ~o(1+2i) ** ~o(3+4i)
+  0.129009594074467+0.03392409290517014i
+
+  """
+
   defmacro __using__(_opts) do
     quote do
       import Kernel, except: [-: 1, +: 2, -: 2, *: 2, /: 2, **: 2, abs: 1]
@@ -15,14 +50,30 @@ defmodule Complex do
   @typedoc false
   @type operator() :: :+ | :- | :* | :/ | :**
 
+  @doc """
+  Returns `true` if `term` is a complex number, otherwise returns `false`.
+
+  Allowed in guard tests.
+  """
   defguard is_complex(term) when is_struct(term, Complex)
 
-  @spec sigil_o(String.t(), list()) :: complex() | float() | :error
-  def sigil_o(string, _modifiers), do: parse(string)
+  @doc """
+  Parses a string into a complex number.
 
-  @spec ib(number()) :: %Complex{im: 1, re: number()}
-  def ib(b \\ 1), do: %Complex{re: 0, im: b}
+  If successful, returns either a `t:complex/0` or `t:float/0`; otherwise returns `:error`.
 
+  ## Examples
+
+  iex> Complex.parse "1+13i"
+  1.0+13.0i
+
+  iex> Complex.parse "2.3-1i"
+  2.3-1.0i
+
+  iex> Complex.parse "42"
+  :error
+
+  """
   @spec parse(String.t()) :: complex() | float() | :error
   def parse(string) do
     case Regex.run(~r/([\+\-]?[0-9\.]+)((?:\+|-)[0-9\.]+)i/, string) do
@@ -42,6 +93,37 @@ defmodule Complex do
     end
   end
 
+  @doc """
+  Handles the sigil `~o` for complex numbers.
+
+  It returns a `t:complex/0` or `t:float/0`.
+
+  ## Examples
+
+  iex> ~o(1+4i)
+  1.0+4.0i
+
+  iex> ~o(-3.1+5i)
+  -3.1+5.0i
+
+  """
+  @spec sigil_o(String.t(), list()) :: complex() | float() | :error
+  def sigil_o(string, _modifiers), do: parse(string)
+
+  @doc """
+  Imaginary unit.
+
+  When no arguments passed, returns imaginary unit; otherwise returns i*b.
+  """
+  @spec ib(number()) :: %Complex{im: 1, re: number()}
+  def ib(b \\ 1), do: %Complex{re: 0, im: b}
+
+  @doc """
+  Complex conjugate.
+
+  Returns the complex conjugate of a complex number.
+  """
+  @spec conj(complex()) :: complex()
   def conj(z) when is_complex(z) do
     cond do
       z.im > 0 ->
@@ -52,6 +134,12 @@ defmodule Complex do
     end
   end
 
+  @doc """
+  Polar coordinates.
+
+  Returns polar coordinates of a complex number as `{radius, angle}`.
+  """
+  @spec to_polar(complex()) :: {float, float}
   def to_polar(z) when is_complex(z) do
     a = z.re
     b = z.im
