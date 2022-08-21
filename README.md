@@ -1,21 +1,27 @@
-# Complex
+# qcomplex
 
-**TODO: Add description**
+Elixir library implementing complex numbers and math.
+
+The library adds new type of `t:complex/0` numbers and basic math operations for them. Complex numbers can also interact with integers and floats. Actually this library expands existing functions, so they can work with complex numbers too. Number operations available:
+
+* addition
+* subtraction
+* multiplication
+* division
+* exponentiation
+* absolute value
+* trigonometric functions
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `complex` to your list of dependencies in `mix.exs`:
+qcomplex is [available in Hex](https://hex.pm/packages/qcomplex) and can be installed by adding `qcomplex` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:complex, "~> 0.1.0"}
+    {:complex, "~> 0.1.0", hex: :qcomplex}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/complex>.
-
+The docs can be found at <https://hexdocs.pm/qcomplex>.
