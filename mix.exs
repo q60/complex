@@ -7,7 +7,29 @@ defmodule Complex.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
+      name: "qcomplex",
+      source_url: "https://github.com/q60/complex",
+      docs: [
+        main: "Complex",
+        extras: ["README.md"]
+      ]
+    ]
+  end
+
+  defp description() do
+    "Elixir library implementing complex numbers and math."
+  end
+
+  defp package() do
+    [
+      name: "qcomplex",
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/q60/complex"
+      }
     ]
   end
 
@@ -19,8 +41,7 @@ defmodule Complex.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:ex_doc, "~> 0.28.4", only: :dev, runtime: false}
     ]
   end
 end
