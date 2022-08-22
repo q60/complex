@@ -4,7 +4,7 @@ defmodule Complex.MixProject do
   def project do
     [
       app: :complex,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
       description: description(),

@@ -40,7 +40,7 @@ defmodule Complex do
       import ComplexMath
 
       import Complex,
-        only: [is_complex: 1, sigil_o: 2, parse: 1, ib: 0, ib: 1, conj: 1, to_polar: 1]
+        only: [is_complex: 1, sigil_o: 2]
     end
   end
 
